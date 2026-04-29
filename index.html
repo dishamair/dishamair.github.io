@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disha Mair — Senior Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#18181b;--ink2:#27272a;--muted:#71717a;--faint:#a1a1aa;
+  --sage:#4a7c6f;--sage-light:#edf4f1;--sage-mid:#9dc4b8;
+  --blush:#fdf0eb;--blush-deep:#e8c4b0;
+  --cream:#fafaf8;--white:#ffffff;
+  --border:#e4e4e7;--border2:#d4d4d8;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Outfit',sans-serif;
+  --r:14px;--rs:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* CURSOR */
+.cdot{width:7px;height:7px;background:var(--sage);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;top:0;left:0;transition:transform 0.1s}
+.cring{width:30px;height:30px;border:1.5px solid var(--sage-mid);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;top:0;left:0;transition:width 0.2s,height 0.2s,opacity 0.2s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 6%;background:rgba(250,250,248,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,0.06)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--sage)}
+.nav-links{display:flex;gap:0.2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:0.4rem 0.85rem;border-radius:100px;transition:all 0.2s;letter-spacing:0.02em}
+.nav-links a:hover,.nav-links a.active{background:var(--sage-light);color:var(--sage)}
+.nav-cta{background:var(--ink)!important;color:var(--white)!important}
+.nav-cta:hover{background:var(--sage)!important;color:var(--white)!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hbg span{display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1.05fr 0.95fr;gap:4rem;align-items:center;padding:8rem 6% 5rem;position:relative;overflow:hidden}
+.hero-shape{position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(150deg,var(--sage-light) 0%,var(--blush) 60%,var(--cream) 100%);z-index:0;clip-path:ellipse(90% 85% at 95% 50%)}
+.hero-l{position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:0.55rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:0.38rem 1rem;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage);margin-bottom:2rem;box-shadow:0 2px 10px rgba(74,124,111,0.1)}
+.pulse{width:6px;height:6px;background:var(--sage);border-radius:50%;animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:0.4;transform:scale(0.7)}}
+h1{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);font-weight:700;line-height:1.06;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.5rem}
+h1 em{font-style:italic;color:var(--sage)}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.9;max-width:450px;margin-bottom:2.8rem;font-weight:300}
+.hero-desc strong{color:var(--ink);font-weight:500}
+.hero-acts{display:flex;gap:0.9rem;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.82rem 1.8rem;border-radius:100px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:all 0.25s;cursor:pointer;border:none;font-family:var(--sans);letter-spacing:0.01em}
+.btn-d{background:var(--ink);color:var(--white)}
+.btn-d:hover{background:var(--sage);transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,124,111,0.28)}
+.btn-d .arr{transition:transform 0.2s}
+.btn-d:hover .arr{transform:translateX(3px)}
+.btn-g{background:transparent;color:var(--ink);border:1.5px solid var(--border2)}
+.btn-g:hover{border-color:var(--sage);color:var(--sage);background:var(--sage-light)}
+
+.hero-r{position:relative;z-index:1;display:flex;flex-direction:column;gap:1rem}
+.hcard{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.8rem;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+.hcard:nth-child(1){animation:float 5s ease-in-out infinite}
+.hcard:nth-child(2){animation:float 5s ease-in-out 1.5s infinite}
+.hcard:nth-child(3){animation:float 5s ease-in-out 3s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hc-label{font-size:0.66rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);margin-bottom:0.6rem}
+.hc-val{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--ink);line-height:1}
+.hc-sub{font-size:0.78rem;color:var(--muted);margin-top:0.3rem}
+.hc-row{display:flex;gap:1.8rem}
+.pills{display:flex;gap:0.45rem;flex-wrap:wrap;margin-top:0.4rem}
+.pill{background:var(--sage-light);color:var(--sage);font-size:0.68rem;font-weight:700;padding:0.28rem 0.75rem;border-radius:100px;border:1px solid var(--sage-mid)}
+.pill.a{background:#fef6e4;color:#92680a;border-color:#f5d67e}
+
+/* MARQUEE */
+.mq{background:var(--ink);padding:0.95rem 0;overflow:hidden;white-space:nowrap}
+.mq-t{display:inline-flex;gap:1.8rem;animation:mq 24s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-i{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:inline-flex;align-items:center;gap:1.4rem}
+.mq-i::after{content:'✦';color:var(--sage-mid);font-size:0.55rem}
+
+/* SECTION SHARED */
+section{padding:7rem 6%}
+.chip{display:inline-flex;align-items:center;gap:0.45rem;background:var(--sage-light);color:var(--sage);font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.38rem 1rem;border-radius:100px;margin-bottom:1.1rem}
+h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--ink)}
+h2 em{font-style:italic;color:var(--sage)}
+.lead{font-size:0.97rem;color:var(--muted);max-width:520px;line-height:1.9;margin-top:0.9rem;font-weight:300}
+
+/* ABOUT */
+#about{background:var(--white)}
+.ab-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5.5rem;align-items:start;margin-top:3.5rem}
+.ab-text{font-size:0.97rem;color:var(--muted);line-height:1.95;font-weight:300}
+.ab-text p+p{margin-top:1.2rem}
+.ab-text strong{color:var(--ink);font-weight:600}
+.side-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.1rem}
+.sc-ttl{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);margin-bottom:1.1rem}
+.c-stack{display:flex;flex-direction:column;gap:0.65rem}
+.crow{display:flex;align-items:center;gap:0.85rem;padding:0.78rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--rs);transition:border-color 0.2s,transform 0.2s}
+.crow:hover{border-color:var(--sage-mid);transform:translateX(4px)}
+.cico{width:33px;height:33px;border-radius:7px;background:var(--sage-light);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.7rem;color:var(--sage);flex-shrink:0}
+.cn{font-size:0.82rem;font-weight:600;color:var(--ink)}
+.co{font-size:0.7rem;color:var(--faint);margin-top:0.05rem}
+.cbadge{margin-left:auto;background:#fef6e4;color:#92680a;font-size:0.58rem;font-weight:700;padding:0.18rem 0.55rem;border-radius:100px;border:1px solid #f5d67e;white-space:nowrap}
+.e-stack{display:flex;flex-direction:column;gap:0.8rem}
+.ei .en{font-size:0.87rem;font-weight:600;color:var(--ink)}
+.ei .ey{font-size:0.73rem;color:var(--faint);margin-top:0.08rem}
+.ediv{height:1px;background:var(--border);margin:0.4rem 0}
+
+/* NUMBERS */
+#nums{background:var(--sage);padding:5rem 6%}
+.ng{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.nn{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;color:var(--white);line-height:1}
+.nl{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:0.5rem}
+
+/* EXPERIENCE */
+#experience{background:var(--cream)}
+.exp-list{margin-top:3.5rem;display:flex;flex-direction:column;gap:1.2rem}
+.ec{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:2rem 2.2rem;transition:box-shadow 0.25s,transform 0.25s,border-color 0.25s}
+.ec:hover{box-shadow:0 10px 36px rgba(0,0,0,0.07);transform:translateY(-3px);border-color:var(--sage-mid)}
+.et{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.eco{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);line-height:1.1}
+.er{font-size:0.84rem;font-weight:600;color:var(--sage);margin-top:0.35rem}
+.em{text-align:right}
+.ep{font-size:0.74rem;font-weight:600;color:var(--faint);letter-spacing:0.03em}
+.el{font-size:0.7rem;color:var(--faint);margin-top:0.15rem}
+.edivider{height:1px;background:var(--border);margin:1.1rem 0}
+.eb{list-style:none;display:flex;flex-direction:column;gap:0.45rem}
+.eb li{font-size:0.87rem;color:var(--muted);padding-left:1.4rem;position:relative;line-height:1.65}
+.eb li::before{content:'→';position:absolute;left:0;color:var(--sage-mid);font-size:0.78rem;top:0.02rem}
+.eaw{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.9rem;background:#fef6e4;border:1px solid #f5d67e;border-radius:100px;padding:0.28rem 0.9rem;font-size:0.68rem;font-weight:700;color:#92680a;letter-spacing:0.03em}
+
+/* SKILLS */
+#skills{background:var(--white)}
+.sk-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3.5rem}
+.skc{border-radius:var(--r);padding:1.9rem 1.7rem;border:1px solid var(--border);transition:transform 0.25s,box-shadow 0.25s}
+.skc:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,0.07)}
+.skc.s1{background:var(--sage);border-color:var(--sage)}
+.skc.s1 .sn,.skc.s1 .st{color:var(--white)}
+.skc.s1 .sd{color:rgba(255,255,255,0.72)}
+.skc.s2{background:var(--blush)}
+.skc.s3{background:var(--cream)}
+.skc.s4{background:var(--sage-light);border-color:var(--sage-mid)}
+.skc.s5{background:var(--white)}
+.skc.s6{background:var(--ink);border-color:var(--ink)}
+.skc.s6 .sn,.skc.s6 .st{color:var(--white)}
+.skc.s6 .sd{color:rgba(255,255,255,0.58)}
+.sn{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--sage);line-height:1;margin-bottom:0.8rem}
+.st{font-size:0.83rem;font-weight:700;color:var(--ink);margin-bottom:0.45rem;letter-spacing:0.01em}
+.sd{font-size:0.8rem;color:var(--muted);line-height:1.65}
+
+/* BLOG */
+#blog{background:var(--cream)}
+.bg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:3.5rem}
+.bc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow 0.25s,transform 0.25s,border-color 0.25s}
+.bc:hover{box-shadow:0 12px 36px rgba(0,0,0,0.08);transform:translateY(-4px);border-color:var(--sage-mid)}
+.bi{height:175px;display:flex;align-items:flex-end;padding:1.1rem;position:relative}
+.bi.b1{background:linear-gradient(135deg,#4a7c6f 0%,#9dc4b8 100%)}
+.bi.b2{background:linear-gradient(135deg,#c4857a 0%,#e8c4b0 100%)}
+.bi.b3{background:linear-gradient(135deg,#18181b 0%,#3f3f46 100%)}
+.bi-tag{background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:var(--white);font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:100px;border:1px solid rgba(255,255,255,0.22)}
+.bb{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+.bt{font-family:var(--serif);font-size:1.12rem;font-weight:700;color:var(--ink);line-height:1.28;margin-bottom:0.65rem}
+.bx{font-size:0.8rem;color:var(--muted);line-height:1.7;flex:1}
+.bf{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:0.9rem;border-top:1px solid var(--border)}
+.bcs{font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--faint)}
+.ba{width:26px;height:26px;background:var(--sage-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--sage);transition:background 0.2s,color 0.2s}
+.bc:hover .ba{background:var(--sage);color:var(--white)}
+
+/* CONTACT */
+#contact{background:var(--white)}
+.ct-layout{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:start;margin-top:3.5rem}
+.ct-sub{font-size:0.97rem;color:var(--muted);line-height:1.9;margin-bottom:2.2rem;font-weight:300}
+.ct-chips{display:flex;flex-direction:column;gap:0.72rem}
+.cch{display:flex;align-items:center;gap:0.9rem;padding:1rem 1.3rem;background:var(--cream);border:1px solid var(--border);border-radius:var(--rs);text-decoration:none;color:var(--ink);font-size:0.86rem;font-weight:500;transition:all 0.2s}
+.cch:hover{border-color:var(--sage);background:var(--sage-light);color:var(--sage)}
+.cc-ico{width:34px;height:34px;background:var(--white);border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.82rem;flex-shrink:0;transition:all 0.2s}
+.cch:hover .cc-ico{background:var(--sage);border-color:var(--sage);color:var(--white)}
+.cf{display:flex;flex-direction:column;gap:0.9rem}
+.fg{display:flex;flex-direction:column;gap:0.38rem}
+.fg label{font-size:0.73rem;font-weight:600;color:var(--ink);letter-spacing:0.04em}
+.fg input,.fg textarea{background:var(--cream);border:1.5px solid var(--border);border-radius:var(--rs);padding:0.82rem 1rem;color:var(--ink);font-family:var(--sans);font-size:0.88rem;outline:none;width:100%;transition:border-color 0.2s,box-shadow 0.2s;resize:vertical}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--faint)}
+.fg input:focus,.fg textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(74,124,111,0.1)}
+.fg textarea{min-height:115px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
+.fn{font-size:0.7rem;color:var(--faint);line-height:1.5;margin-top:0.1rem}
+
+/* FOOTER */
+footer{background:var(--ink);padding:2.8rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem}
+.fl{font-family:var(--serif);font-size:1.1rem;color:var(--white);font-weight:700}
+.fl span{color:var(--sage-mid)}
+.flinks{display:flex;gap:1.4rem}
+.flinks a{font-size:0.73rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:var(--white)}
+.fc{font-size:0.7rem;color:rgba(255,255,255,0.28)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 0.72s cubic-bezier(.16,1,.3,1),transform 0.72s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+.rvl{opacity:0;transform:translateX(-28px);transition:opacity 0.72s cubic-bezier(.16,1,.3,1),transform 0.72s cubic-bezier(.16,1,.3,1)}
+.rvl.on{opacity:1;transform:none}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
+
+/* MOBILE */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;padding-top:7rem}
+  .hero-r{display:none}
+  .hero-shape{display:none}
+  .ab-grid{grid-template-columns:1fr;gap:2.5rem}
+  .ct-layout{grid-template-columns:1fr;gap:3rem}
+  .ng{grid-template-columns:repeat(2,1fr)}
+  .sk-bento{grid-template-columns:repeat(2,1fr)}
+  .bg-grid{grid-template-columns:1fr}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(250,250,248,0.97);flex-direction:column;border-bottom:1px solid var(--border);z-index:99;padding:0.8rem 0}
+  .nav-links.open{display:flex}
+  .nav-links li a{display:block;padding:0.85rem 6%;border-radius:0}
+  .hbg{display:flex}
+  .f-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){.sk-bento{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="cdot" id="dot"></div>
+<div class="cring" id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Disha <span>Mair</span></a>
+  <ul class="nav-links" id="nl">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-shape"></div>
+  <div class="hero-l">
+    <div class="hero-tag"><span class="pulse"></span>Open to Senior Roles · PMP Certified 2026</div>
+    <h1>Senior Project<br><em>Manager</em><br>&amp; Delivery Lead.</h1>
+    <p class="hero-desc">10+ years turning complex technology programs into measurable business outcomes. <strong>FIS India · Fintech · Agile · SAFe · AI-augmented delivery.</strong></p>
+    <div class="hero-acts">
+      <a href="#experience" class="btn btn-d">See My Work <span class="arr">→</span></a>
+      <a href="#contact" class="btn btn-g">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hcard">
+      <div class="hc-label">Current Role</div>
+      <div class="hc-val" style="font-size:1.15rem">Senior PM Analyst</div>
+      <div class="hc-sub">Fidelity National Information Services · Mohali</div>
+    </div>
+    <div class="hcard">
+      <div class="hc-label">Career Snapshot</div>
+      <div class="hc-row">
+        <div><div class="hc-val">10+</div><div class="hc-sub">Years Exp.</div></div>
+        <div><div class="hc-val">~50%</div><div class="hc-sub">Revenue Growth</div></div>
+        <div><div class="hc-val">4–5</div><div class="hc-sub">Live Projects</div></div>
+      </div>
+    </div>
+    <div class="hcard">
+      <div class="hc-label">Certifications</div>
+      <div class="pills">
+        <span class="pill a">★ PMP · 2026</span>
+        <span class="pill">SAFe® POPM</span>
+        <span class="pill">SAFe® SM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mq-i">Program Management</span><span class="mq-i">Agile Delivery</span><span class="mq-i">Stakeholder Leadership</span><span class="mq-i">Risk Management</span><span class="mq-i">SAFe Framework</span><span class="mq-i">PMP Certified</span><span class="mq-i">Fintech Expertise</span><span class="mq-i">Cross-functional Teams</span><span class="mq-i">AI-augmented PM</span><span class="mq-i">Delivery Governance</span><span class="mq-i">Program Management</span><span class="mq-i">Agile Delivery</span><span class="mq-i">Stakeholder Leadership</span><span class="mq-i">Risk Management</span><span class="mq-i">SAFe Framework</span><span class="mq-i">PMP Certified</span><span class="mq-i">Fintech Expertise</span><span class="mq-i">Cross-functional Teams</span><span class="mq-i">AI-augmented PM</span><span class="mq-i">Delivery Governance</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="chip">✦ About Me</div>
+  <h2>A decade of <em>delivering</em><br>what matters most.</h2>
+  <div class="ab-grid">
+    <div class="ab-text rvl">
+      <p>I'm a <strong>Senior IT Project Manager</strong> with 10+ years of progressive experience leading complex technology programs across fintech and enterprise domains. Currently at <strong>FIS India</strong> — one of the world's largest fintech companies — I manage multiple concurrent product delivery streams under FIS Code Connect.</p>
+      <p>My edge is the rare combination of a <strong>B.Tech in Computer Science</strong> and an <strong>MBA in International Business</strong> — I can hold a technical conversation with engineers in the morning and present to C-suite in the afternoon without losing nuance in either direction.</p>
+      <p>I lead with data and manage with empathy. I've built delivery frameworks that improved efficiency, reduced escalations, and contributed to <strong>~50% revenue growth</strong>. I use <strong>Microsoft Copilot and AI tools daily</strong> — not as novelty, but as genuine productivity multipliers for my teams.</p>
+      <p>Based in <strong>Chandigarh</strong>, open to pan-India and remote senior leadership roles. Targeting <strong>Program Director and Head of Delivery</strong> positions where I can drive transformation at scale.</p>
+    </div>
+    <div class="rv d2">
+      <div class="side-card">
+        <div class="sc-ttl">Certifications</div>
+        <div class="c-stack">
+          <div class="crow">
+            <div class="cico">PMP</div>
+            <div><div class="cn">Project Management Professional</div><div class="co">PMI · Project Management Institute</div></div>
+            <span class="cbadge">2026 ✦</span>
+          </div>
+          <div class="crow">
+            <div class="cico">SP</div>
+            <div><div class="cn">SAFe® 6 POPM</div><div class="co">Scaled Agile Framework</div></div>
+          </div>
+          <div class="crow">
+            <div class="cico">SM</div>
+            <div><div class="cn">SAFe® Scrum Master</div><div class="co">Scaled Agile Framework</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="sc-ttl">Education</div>
+        <div class="e-stack">
+          <div class="ei"><div class="en">MBA — International Business</div><div class="ey">2020 – 2022</div></div>
+          <div class="ediv"></div>
+          <div class="ei"><div class="en">B.Tech — Computer Science Engineering</div><div class="ey">2011 – 2015</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS BAND -->
+<section id="nums">
+  <div class="ng">
+    <div class="rv"><div class="nn">10+</div><div class="nl">Years of Experience</div></div>
+    <div class="rv d1"><div class="nn">4–5</div><div class="nl">Concurrent Projects Led</div></div>
+    <div class="rv d2"><div class="nn">~50%</div><div class="nl">Revenue Growth Driven</div></div>
+    <div class="rv d3"><div class="nn">3★</div><div class="nl">Industry Awards Won</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="chip">✦ Career Journey</div>
+  <h2>A track record built<br>on <em>consistent</em> delivery.</h2>
+  <div class="exp-list">
+
+    <div class="ec rv">
+      <div class="et">
+        <div><div class="eco">Fidelity National Information Services</div><div class="er">Senior Project Management Analyst</div></div>
+        <div class="em"><div class="ep">Dec 2021 – Present</div><div class="el">Mohali, India</div></div>
+      </div>
+      <div class="edivider"></div>
+      <ul class="eb">
+        <li>Led end-to-end delivery of 4–5 concurrent projects under FIS Code Connect across engineering, product, sales, implementation, support, and billing teams.</li>
+        <li>Managed senior stakeholder communication, improving transparency and significantly reducing escalations across the portfolio.</li>
+        <li>Drove Agile delivery practices, improving sprint predictability and overall delivery efficiency organisation-wide.</li>
+        <li>Contributed to process improvements enabling approximately 50% revenue growth across the product line.</li>
+        <li>Leveraged Microsoft Copilot and AI tools to streamline reporting, documentation, and planning workflows — measurably boosting team productivity.</li>
+        <li>Led large-scale release planning and coordinated seamless production deployments across distributed international teams.</li>
+      </ul>
+      <div class="eaw">⭐ Above &amp; Beyond Award — Ownership &amp; Delivery Excellence</div>
+    </div>
+
+    <div class="ec rv">
+      <div class="et">
+        <div><div class="eco">ONE Business Consulting Group</div><div class="er">Associate Project Manager</div></div>
+        <div class="em"><div class="ep">Sep 2019 – Dec 2021</div><div class="el">Mohali, India</div></div>
+      </div>
+      <div class="edivider"></div>
+      <ul class="eb">
+        <li>Owned full project lifecycle from initiation through closure, ensuring alignment with business goals and delivery outcomes.</li>
+        <li>Collaborated with stakeholders to define scope, timelines, and deliverables across multiple concurrent engagements.</li>
+        <li>Handled risk identification, issue resolution, forecasting, expense reporting, and executive status reporting.</li>
+        <li>Supported Agile ceremonies and continuously improved team collaboration and delivery velocity.</li>
+      </ul>
+      <div class="eaw">⭐ Productivity &amp; Ownership Award</div>
+    </div>
+
+    <div class="ec rv">
+      <div class="et">
+        <div><div class="eco">KiwiTech</div><div class="er">Project Coordinator</div></div>
+        <div class="em"><div class="ep">Aug 2017 – Aug 2019</div><div class="el">Noida, India</div></div>
+      </div>
+      <div class="edivider"></div>
+      <ul class="eb">
+        <li>Led end-to-end execution of web and mobile application projects from kickoff through production release and post-deployment support.</li>
+        <li>Translated complex business requirements into functional specs, user stories, and acceptance criteria enabling efficient engineering delivery.</li>
+        <li>Led all Agile ceremonies: sprint planning, daily stand-ups, backlog refinement, reviews, and retrospectives.</li>
+        <li>Utilised JIRA and Basecamp for delivery tracking and team performance monitoring across multiple projects.</li>
+      </ul>
+      <div class="eaw">⭐ Employee of the Month</div>
+    </div>
+
+    <div class="ec rv">
+      <div class="et">
+        <div><div class="eco">Tech Prastish · Click Labs</div><div class="er">Project Coordinator (Earlier Career)</div></div>
+        <div class="em"><div class="ep">Apr 2016 – Aug 2017</div><div class="el">Mohali · Chandigarh</div></div>
+      </div>
+      <div class="edivider"></div>
+      <ul class="eb">
+        <li>Managed delivery of web and mobile projects sourced through Upwork, Freelancer, and internal sales channels.</li>
+        <li>Developed project artifacts including wireframes (Balsamiq) and process flows (Lucidchart) to support requirement clarity.</li>
+        <li>Supported Agile adoption, managed project financials, and coordinated milestone-based delivery tracking.</li>
+      </ul>
+      <div class="eaw">⭐ Intern of the Year · Click Labs</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="chip">✦ Core Expertise</div>
+  <h2>What I bring to<br>every <em>engagement.</em></h2>
+  <div class="sk-bento">
+    <div class="skc s1 rv"><div class="sn">01</div><div class="st">Program &amp; Project Delivery</div><div class="sd">End-to-end ownership of complex, multi-workstream programs. On time, on budget, on scope — always.</div></div>
+    <div class="skc s2 rv d1"><div class="sn">02</div><div class="st">Agile &amp; Hybrid Methodologies</div><div class="sd">SAFe, Scrum, Kanban, and hybrid delivery frameworks. Certified POPM and Scrum Master with real-world application.</div></div>
+    <div class="skc s3 rv d2"><div class="sn">03</div><div class="st">Stakeholder Leadership</div><div class="sd">C-suite communication, conflict resolution, and building alignment across geographically distributed cross-functional teams.</div></div>
+    <div class="skc s4 rv d1"><div class="sn">04</div><div class="st">Risk &amp; Governance</div><div class="sd">Proactive risk identification, issue escalation, delivery governance frameworks, and data-driven executive reporting.</div></div>
+    <div class="skc s5 rv d2"><div class="sn">05</div><div class="st">AI-Augmented PM</div><div class="sd">Daily user of Microsoft Copilot for reporting, documentation, planning, and workflow automation. A practice, not a trend.</div></div>
+    <div class="skc s6 rv d3"><div class="sn">06</div><div class="st">Process Improvement</div><div class="sd">Delivery framework design, efficiency optimisation, and measurable contribution to ~50% revenue growth at FIS India.</div></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="chip">✦ Insights &amp; Thinking</div>
+  <h2>Perspectives from<br><em>the field.</em></h2>
+  <p class="lead">Real talk on project management, Agile in the wild, AI tools that actually help, and leadership lessons from 10 years in the trenches. Launching soon.</p>
+  <div class="bg-grid">
+    <a href="#" class="bc rv">
+      <div class="bi b1"><span class="bi-tag">Leadership</span></div>
+      <div class="bb">
+        <div class="bt">Why Most Agile Transformations Fail (And What Actually Works)</div>
+        <div class="bx">After 10 years watching Agile roll out across organisations, I've noticed a pattern. Here's what separates teams that thrive from the ones that just do stand-ups.</div>
+        <div class="bf"><span class="bcs">Coming Soon</span><div class="ba">→</div></div>
+      </div>
+    </a>
+    <a href="#" class="bc rv d1">
+      <div class="bi b2"><span class="bi-tag">AI in PM</span></div>
+      <div class="bb">
+        <div class="bt">How I Use Microsoft Copilot to Run Better Project Reviews</div>
+        <div class="bx">AI didn't replace my judgment — it freed up time for it. A practical guide to integrating Copilot into your weekly PM rituals without losing the human edge.</div>
+        <div class="bf"><span class="bcs">Coming Soon</span><div class="ba">→</div></div>
+      </div>
+    </a>
+    <a href="#" class="bc rv d2">
+      <div class="bi b3"><span class="bi-tag">Career</span></div>
+      <div class="bb">
+        <div class="bt">The PMP Journey: What Nobody Tells You Before You Start</div>
+        <div class="bx">I earned my PMP in April 2026 while running full project portfolios. Honest breakdown — prep strategy, time management, and whether it was worth it.</div>
+        <div class="bf"><span class="bcs">Coming Soon</span><div class="ba">→</div></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="chip">✦ Let's Connect</div>
+  <h2>Open to the right<br><em>conversations.</em></h2>
+  <div class="ct-layout">
+    <div class="rvl">
+      <p class="ct-sub">Whether you're a recruiter with a senior opportunity, a fellow PM wanting to exchange notes, or someone who read something on my blog — I'd genuinely love to hear from you. Based in Chandigarh, open to pan-India and remote senior roles.</p>
+      <div class="ct-chips">
+        <a href="mailto:dishamair08@gmail.com" class="cch"><div class="cc-ico">✉</div>dishamair08@gmail.com</a>
+        <a href="tel:+918968505158" class="cch"><div class="cc-ico">☎</div>+91 89685 05158</a>
+        <a href="https://linkedin.com/in/dishamair" target="_blank" class="cch"><div class="cc-ico">in</div>LinkedIn — Disha Mair</a>
+        <a href="#" class="cch"><div class="cc-ico">📍</div>Chandigarh · Open to Relocation</a>
+      </div>
+    </div>
+    <div class="cf rv d1">
+      <div class="f-row">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="Jane Smith"></div>
+        <div class="fg"><label>Your Email</label><input type="email" placeholder="jane@company.com"></div>
+      </div>
+      <div class="fg"><label>Subject</label><input type="text" placeholder="e.g. Senior PM Opportunity at XYZ Corp"></div>
+      <div class="fg"><label>Message</label><textarea placeholder="Tell me about the opportunity or what's on your mind..."></textarea></div>
+      <button class="btn btn-d" style="width:fit-content" onclick="alert('Once your site is live, connect this to Formspree.io — free email forwarding, zero code!')">Send Message →</button>
+      <p class="fn">⚡ Wire this form to Formspree.io once live — free, takes 5 minutes, zero code needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">Disha <span>Mair</span></div>
+  <div class="flinks">
+    <a href="#about">About</a><a href="#experience">Experience</a>
+    <a href="#skills">Skills</a><a href="#blog">Blog</a><a href="#contact">Contact</a>
+  </div>
+  <div class="fc">© 2026 · Senior Project Manager · Chandigarh</div>
+</footer>
+
+<script>
+// Custom cursor
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.transform=`translate(${mx-3.5}px,${my-3.5}px)`;
+});
+(function animateRing(){
+  rx+=(mx-rx-15)*0.11;ry+=(my-ry-15)*0.11;
+  ring.style.transform=`translate(${rx}px,${ry}px)`;
+  requestAnimationFrame(animateRing);
+})();
+document.querySelectorAll('a,button,.ec,.bc,.crow,.cch').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px'});
+});
+
+// Mobile nav
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('nl').classList.toggle('open'));
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>40),{passive:true});
+
+// Scroll reveal
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:0.1});
+document.querySelectorAll('.rv,.rvl').forEach(el=>obs.observe(el));
+
+// Nav active
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(scrollY>=s.offsetTop-150)cur=s.id});
+  nls.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur&&!a.classList.contains('nav-cta')));
+},{passive:true});
+</script>
+</body>
+</html>
