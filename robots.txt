@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dishamair.com/sitemap.xml
